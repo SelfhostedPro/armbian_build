@@ -45,11 +45,6 @@ on:
         - kde-plasma
         default: 'minimal'
 
-      armbian_version:
-        description: 'Version'
-        required: false
-        default: ''
-
       armbian_board:
         type: choice
         description: 'Board'
@@ -69,10 +64,10 @@ jobs:
           armbian_token:              "${{secrets.GITHUB_TOKEN}}"
           armbian_target:             "${{inputs.armbian_target}}"
           armbian_release:            "${{inputs.armbian_release}}"
-          armbian_kernel_branch:      "${{inputs.armbian_kernel_branch}}"
+          # armbian_kernel_branch:      "${{inputs.armbian_kernel_branch}}"
           armbian_ui:                 "${{inputs.armbian_ui}}"
           armbian_board:              "${{inputs.armbian_board}}"
-          armbian_release_tittle:     "Armbian SDK"
-          armbian_release_body:       "Virtual images for x86 and arm64"
-          armbian_pgp_key:            "${{secrets.GPG_KEY1}}"
-          armbian_pgp_password:       "${{secrets.GPG_PASSPHRASE1}}"
+          armbian_release_tittle:     "Armbian OS"
+          armbian_release_body:       "Images by SelfhostedPro"
+          # armbian_pgp_key:            "${{secrets.GPG_KEY1}}"
+          # armbian_pgp_password:       "${{secrets.GPG_PASSPHRASE1}}"
