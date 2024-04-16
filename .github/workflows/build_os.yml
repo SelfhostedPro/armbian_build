@@ -1,0 +1,78 @@
+name: "Build One by One (anyone)"
+on:
+  workflow_dispatch:
+    inputs:
+
+      armbian_target:
+        type: choice
+        description: 'Build'
+        required: false
+        options:
+        - kernel
+        - build
+        default: build
+
+      armbian_kernel_branch:
+        type: choice
+        description: 'Kernel branch'
+        options:
+        - legacy
+        - current
+        - edge
+        default: 'current'
+
+      armbian_release:
+        type: choice
+        description: 'Userspace'
+        options:
+        - jammy
+        - mantic
+        - bookworm
+        - trixie
+        - sid
+        default: 'jammy'
+
+      armbian_ui:
+        type: choice
+        description: 'User interface (not all works)'
+        options:
+        - minimal
+        - server
+        - xfce
+        - gnome
+        - cinnamon
+        - i3-wm
+        - kde-plasma
+        default: 'minimal'
+
+      armbian_version:
+        description: 'Version'
+        required: false
+        default: ''
+
+      armbian_board:
+        type: choice
+        description: 'Board'
+        options:
+        - radxa-zero3
+        - rpi4b
+        - rpi5b
+jobs:
+
+  build:
+    name: "Build Armbian"
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: armbian/build@v24.2.1
+        with:
+          armbian_token:              "${{secrets.GITHUB_TOKEN}}"
+          armbian_target:             "${{inputs.armbian_target}}"
+          armbian_release:            "${{inputs.armbian_release}}"
+          armbian_kernel_branch:      "${{inputs.armbian_kernel_branch}}"
+          armbian_ui:                 "${{inputs.armbian_ui}}"
+          armbian_board:              "${{inputs.armbian_board}}"
+          armbian_release_tittle:     "Armbian SDK"
+          armbian_release_body:       "Virtual images for x86 and arm64"
+          armbian_pgp_key:            "${{secrets.GPG_KEY1}}"
+          armbian_pgp_password:       "${{secrets.GPG_PASSPHRASE1}}"
