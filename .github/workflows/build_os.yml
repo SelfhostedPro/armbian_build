@@ -19,7 +19,7 @@ on:
         - legacy
         - current
         - edge
-        default: 'current'
+        default: 'edge'
 
       armbian_release:
         type: choice
@@ -30,7 +30,7 @@ on:
         - bookworm
         - trixie
         - sid
-        default: 'jammy'
+        default: 'trixie'
 
       armbian_ui:
         type: choice
@@ -43,7 +43,7 @@ on:
         - cinnamon
         - i3-wm
         - kde-plasma
-        default: 'minimal'
+        default: 'server'
 
       armbian_board:
         type: choice
